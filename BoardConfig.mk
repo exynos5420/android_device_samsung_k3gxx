@@ -77,7 +77,6 @@ BOARD_KERNEL_PAGESIZE := 2048
 
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
-BOARD_USES_NEON_BLITANTIH := true
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/k3gxx/include
@@ -104,8 +103,6 @@ IR_HAL_SUFFIX := universal5422
 # Radio
 BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6360
-# we need define it (because audio.primary.universal5422.so requires it)
-TARGET_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 BOARD_RIL_CLASS := ../../../device/samsung/k3gxx/ril
 
 # Recovery
@@ -118,8 +115,6 @@ BOARD_SEPOLICY_DIRS += \
 
 # Graphics
 USE_OPENGL_RENDERER := true
-VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
-SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 # Use Exynos BGRA mixer
 BOARD_USE_BGRA_8888 := true
@@ -211,5 +206,3 @@ BOARD_HARDWARE_CLASS += device/samsung/k3gxx/cmhw
 # SECCOMP
 # frameworks/av/services/{mediacodec,mediaextractor}/minijail
 BOARD_SECCOMP_POLICY += device/samsung/k3gxx/seccomp
-
--include vendor/samsung/k3gxx/BoardConfigVendor.mk
