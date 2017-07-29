@@ -60,6 +60,15 @@ on post-fs-data
     restorecon /data/privatemode
 
 on boot
+    # Ensure all CPUs are online (big cluster)
+    write /sys/devices/system/cpu/cpu4/online 1
+
+    # Update cpusets now that processors are up
+    write /dev/cpuset/foreground/cpus 0-7
+    write /dev/cpuset/foreground/boost/cpus 4-7
+    write /dev/cpuset/background/cpus 0
+    write /dev/cpuset/system-background/cpus 0-3
+
     # Permissions for bluetooth
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
     chown bluetooth net_bt_stack ro.bt.bdaddr_path
