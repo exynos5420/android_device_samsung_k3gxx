@@ -27,11 +27,11 @@
  */
 #define PANEL_BRIGHTNESS_NODE "/sys/class/backlight/panel/brightness"
 #define PANEL_MAX_BRIGHTNESS_NODE "/sys/class/backlight/panel/max_brightness"
-#define BUTTON_BRIGHTNESS_NODE "/sys/class/sec/sec_touchkey/brightness"
+#define BUTTON_BRIGHTNESS_NODE "/sys/class/sec/sec_touchkey/touchkey_brightness"
 #define LED_BLINK_NODE "/sys/class/sec/led/led_blink"
 
-// Variable button brightness
-#define VAR_BUTTON_BRIGHTNESS 1
+// Uncomment to enable variable button brightness
+//#define VAR_BUTTON_BRIGHTNESS 1
 
 /*
  * Brightness adjustment factors
@@ -55,4 +55,3 @@
 #define LED_BRIGHTNESS_ATTENTION 255
 
 #endif // SAMSUNG_LIGHTS_H
-
