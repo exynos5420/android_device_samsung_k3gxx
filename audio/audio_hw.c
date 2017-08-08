@@ -2376,6 +2376,11 @@ int disable_output_path_l(struct stream_out *out)
     struct audio_device *adev = out->dev;
     struct audio_usecase *uc_info;
 
+    /* Do not disable any sound device if we are in a call */
+    if (adev->voice.in_call) {
+        return 0;
+    }
+
     uc_info = get_usecase_from_id(adev, out->usecase);
     if (uc_info == NULL) {
         ALOGE("%s: Could not find the usecase (%d) in the list",
@@ -2394,6 +2399,11 @@ int enable_output_path_l(struct stream_out *out)
 {
     struct audio_device *adev = out->dev;
     struct audio_usecase *uc_info;
+
+    if (out->dev->voice.in_call) {
+        ALOGV("%s: in_call, not switching devices", __func__);
+        return 0;
+    }
 
     uc_info = (struct audio_usecase *)calloc(1, sizeof(struct audio_usecase));
     if (uc_info == NULL) {
