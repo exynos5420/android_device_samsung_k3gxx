@@ -365,6 +365,18 @@ static struct mixer_card *uc_get_mixer_for_card(struct audio_usecase *usecase, i
     return NULL;
 }
 
+static void reset_mixer_list(struct audio_device *adev)
+{
+    struct mixer_card *mixer_card;
+    struct listnode *node;
+    struct listnode *next;
+
+    list_for_each_safe(node, next, &adev->mixer_list) {
+        mixer_card = node_to_item(node, struct mixer_card, adev_list_node);
+        audio_route_reset(mixer_card->audio_route);
+    }
+}
+
 static void free_mixer_list(struct audio_device *adev)
 {
     struct mixer_card *mixer_card;
@@ -2488,6 +2500,8 @@ int stop_voice_call(struct audio_device *adev)
 
     list_remove(&uc_info->adev_list_node);
     free(uc_info);
+
+    reset_mixer_list(adev);
 
     ALOGV("%s: exit", __func__);
     return 0;
