@@ -526,11 +526,11 @@ on fs
     write /sys/class/sec/sec_key/wakeup_keys 116,172
 
 # Permissions for VibratorHW
-  chown system system /sys/class/timed_output/vibrator/pwm_default
-  chown system system /sys/class/timed_output/vibrator/pwm_max
-  chown system system /sys/class/timed_output/vibrator/pwm_min
-  chown system system /sys/class/timed_output/vibrator/pwm_threshold
-  chown system system /sys/class/timed_output/vibrator/pwm_value
+  chown system system /sys/devices/virtual/timed_output/vibrator/pwm_default
+  chown system system /sys/devices/virtual/timed_output/vibrator/pwm_max
+  chown system system /sys/devices/virtual/timed_output/vibrator/pwm_min
+  chown system system /sys/devices/virtual/timed_output/vibrator/pwm_threshold
+  chown system system /sys/devices/virtual/timed_output/vibrator/pwm_value
 
 # terminal mode
 	chmod 0660 /sys/class/android_usb/android0/terminal_version
