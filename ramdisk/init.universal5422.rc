@@ -519,18 +519,18 @@ on fs
     chown system radio /sys/class/sec/sec_touchkey/flip_mode
     chown system radio /sys/class/sec/sec_touchkey/boost_level
     chown system system /sys/class/sec/sec_touchkey/input/enabled
-    chown system system /sys/class/sec/sec_touchkey/keypad_enabled
+    chown system system /sys/devices/virtual/sec/sec_touchkey/keypad_enabled
 
 # Permissions for gpio_keys
     chown radio system /sys/class/sec/sec_key/wakeup_keys
     write /sys/class/sec/sec_key/wakeup_keys 116,172
 
 # Permissions for VibratorHW
-  chown system system /sys/class/timed_output/vibrator/pwm_default
-  chown system system /sys/class/timed_output/vibrator/pwm_max
-  chown system system /sys/class/timed_output/vibrator/pwm_min
-  chown system system /sys/class/timed_output/vibrator/pwm_threshold
-  chown system system /sys/class/timed_output/vibrator/pwm_value
+  chown system system /sys/devices/virtual/timed_output/vibrator/pwm_default
+  chown system system /sys/devices/virtual/timed_output/vibrator/pwm_max
+  chown system system /sys/devices/virtual/timed_output/vibrator/pwm_min
+  chown system system /sys/devices/virtual/timed_output/vibrator/pwm_threshold
+  chown system system /sys/devices/virtual/timed_output/vibrator/pwm_value
 
 # terminal mode
 	chmod 0660 /sys/class/android_usb/android0/terminal_version
