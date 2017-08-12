@@ -269,7 +269,7 @@ static int get_output_device_id(audio_devices_t device)
     }
 }
 
-static int get_input_source_id(audio_source_t source)
+static int get_input_source_id(audio_source_t source, bool wb_amr)
 {
     switch (source) {
     case AUDIO_SOURCE_DEFAULT:
@@ -283,6 +283,9 @@ static int get_input_source_id(audio_source_t source)
     case AUDIO_SOURCE_VOICE_COMMUNICATION:
         return IN_SOURCE_VOICE_COMMUNICATION;
     case AUDIO_SOURCE_VOICE_CALL:
+        if (wb_amr) {
+            return IN_SOURCE_VOICE_CALL_WB;
+        }
         return IN_SOURCE_VOICE_CALL;
     default:
         return IN_SOURCE_NONE;
@@ -300,7 +303,7 @@ static void adev_set_call_audio_path(struct audio_device *adev);
 static void select_devices(struct audio_device *adev)
 {
     int output_device_id = get_output_device_id(adev->out_device);
-    int input_source_id = get_input_source_id(adev->input_source);
+    int input_source_id = get_input_source_id(adev->input_source, adev->wb_amr);
     const char *output_route = NULL;
     const char *input_route = NULL;
     int new_route_id;
@@ -516,12 +519,10 @@ static void adev_set_wb_amr_callback(void *data, int enable)
 
         /* reopen the modem PCMs at the new rate */
         if (adev->in_call) {
-#if 0
-            /* TODO: set rate properly */
+
             end_voice_call(adev);
             select_devices(adev);
             start_voice_call(adev);
-#endif
         }
     }
     pthread_mutex_unlock(&adev->lock);
