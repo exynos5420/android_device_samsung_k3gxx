@@ -17,8 +17,6 @@
 #ifndef _ROUTING_H_
 #define _ROUTING_H_
 
-#include "eS325VoiceProcessing.h"
-
 enum {
     OUT_DEVICE_SPEAKER,
     OUT_DEVICE_EARPIECE,
@@ -44,200 +42,139 @@ enum {
     IN_SOURCE_CNT
 };
 
-enum {
-    ES325_MODE_DEFAULT,
-    ES325_MODE_LEVEL,
-    ES325_NUM_MODES,
-};
-
 struct route_config {
     const char * const output_route;
     const char * const input_route;
-    int es325_preset[ES325_NUM_MODES]; // es325 preset for this route.
-                                       // -1 means es325 bypass
 };
 
-/* TODO: Figure out whether voice routes need to set ES325 presets */
 const struct route_config voice_speaker = {
     "voice-speaker",
     "voice-speaker-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config voice_speaker_wb = {
     "voice-speaker_wb",
     "voice-speaker-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config voice_earpiece = {
     "voice-earpiece",
     "voice-earpiece-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config voice_earpiece_wb = {
     "voice-earpiece_wb",
     "voice-earpiece-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config voice_headphones = {
     "voice-headphones",
     "voice-earpiece-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config voice_headphones_wb = {
     "voice-headphones",
     "voice-earpiece-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config voice_headset = {
     "voice-headphones",
     "voice-headset-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config voice_headset_wb = {
     "voice-headphones",
     "voice-headset-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config media_speaker = {
     "speaker",
     "speaker-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config media_earpiece = {
     "earpiece",
     "earpiece-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config media_headphones = {
     "headphones",
     "earpiece-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config media_headset = {
     "headphones",
     "headset-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config camcorder_speaker = {
     "speaker",
     "camcorder-mic",
-    { ES325_PRESET_CAMCORDER,
-      ES325_PRESET_CAMCORDER }
 };
 
 const struct route_config camcorder_headphones = {
     "headphones",
     "camcorder-mic",
-    { ES325_PRESET_CAMCORDER,
-      ES325_PRESET_CAMCORDER }
 };
 
 const struct route_config voice_rec_speaker = {
     "voice-speaker",
     "voice-rec-mic",
-    { ES325_PRESET_ASRA_HANDHELD,
-      ES325_PRESET_ASRA_DESKTOP }
 };
 
 const struct route_config voice_rec_headphones = {
     "voice-headphones",
     "voice-rec-mic",
-    { ES325_PRESET_ASRA_HANDHELD,
-      ES325_PRESET_ASRA_DESKTOP }
 };
 
 const struct route_config voice_rec_headset = {
     "voice-headphones",
     "voice-rec-headset-mic",
-    { ES325_PRESET_ASRA_HEADSET,
-      ES325_PRESET_ASRA_HEADSET }
 };
 
 const struct route_config communication_speaker = {
     "speaker",
     "speaker-mic",
-    { ES325_PRESET_VOIP_HANDHELD,
-      ES325_PRESET_VOIP_DESKTOP }
 };
 
 const struct route_config communication_earpiece = {
     "earpiece",
     "earpiece-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config communication_headphones = {
     "headphones",
     "earpiece-mic",
-    { ES325_PRESET_VOIP_HEADPHONES,
-      ES325_PRESET_VOIP_HP_DESKTOP}
 };
 
 const struct route_config communication_headset = {
     "headphones",
     "headset-mic",
-    { ES325_PRESET_VOIP_HEADSET,
-      ES325_PRESET_VOIP_HEADSET }
 };
 
 const struct route_config speaker_and_headphones = {
     "speaker-and-headphones",
     "headset-mic",
-    { ES325_PRESET_CURRENT,
-      ES325_PRESET_CURRENT }
 };
 
 const struct route_config bluetooth_sco = {
     "bt-sco-headset",
     "bt-sco-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config bluetooth_sco_nb = {
     "bt-sco-headset",
     "bt-sco-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config bluetooth_sco_wb = {
     "bt-sco-headset",
     "bt-sco-mic",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config none = {
     "none",
     "none",
-    { ES325_PRESET_OFF,
-      ES325_PRESET_OFF }
 };
 
 const struct route_config * const route_configs[IN_SOURCE_TAB_SIZE]
