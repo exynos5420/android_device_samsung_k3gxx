@@ -32,3 +32,6 @@ media.stagefright.less-secure=true
 
 # Wifi
 wlan.wfd.hdcp=disable
+
+# Force WideBand audio
+audio_hal.force_wideband=true
