@@ -38,6 +38,7 @@ enum {
     IN_SOURCE_VOICE_RECOGNITION,
     IN_SOURCE_VOICE_COMMUNICATION,
     IN_SOURCE_VOICE_CALL,
+    IN_SOURCE_VOICE_CALL_WB,
     IN_SOURCE_TAB_SIZE,            /* number of lines in route_configs[][] */
     IN_SOURCE_NONE,
     IN_SOURCE_CNT
@@ -64,8 +65,22 @@ const struct route_config voice_speaker = {
       ES325_PRESET_OFF }
 };
 
+const struct route_config voice_speaker_wb = {
+    "voice-speaker_wb",
+    "voice-speaker-mic",
+    { ES325_PRESET_OFF,
+      ES325_PRESET_OFF }
+};
+
 const struct route_config voice_earpiece = {
     "voice-earpiece",
+    "voice-earpiece-mic",
+    { ES325_PRESET_OFF,
+      ES325_PRESET_OFF }
+};
+
+const struct route_config voice_earpiece_wb = {
+    "voice-earpiece_wb",
     "voice-earpiece-mic",
     { ES325_PRESET_OFF,
       ES325_PRESET_OFF }
@@ -78,7 +93,21 @@ const struct route_config voice_headphones = {
       ES325_PRESET_OFF }
 };
 
+const struct route_config voice_headphones_wb = {
+    "voice-headphones",
+    "voice-earpiece-mic",
+    { ES325_PRESET_OFF,
+      ES325_PRESET_OFF }
+};
+
 const struct route_config voice_headset = {
+    "voice-headphones",
+    "voice-headset-mic",
+    { ES325_PRESET_OFF,
+      ES325_PRESET_OFF }
+};
+
+const struct route_config voice_headset_wb = {
     "voice-headphones",
     "voice-headset-mic",
     { ES325_PRESET_OFF,
@@ -190,6 +219,20 @@ const struct route_config bluetooth_sco = {
       ES325_PRESET_OFF }
 };
 
+const struct route_config bluetooth_sco_nb = {
+    "bt-sco-headset",
+    "bt-sco-mic",
+    { ES325_PRESET_OFF,
+      ES325_PRESET_OFF }
+};
+
+const struct route_config bluetooth_sco_wb = {
+    "bt-sco-headset",
+    "bt-sco-mic",
+    { ES325_PRESET_OFF,
+      ES325_PRESET_OFF }
+};
+
 const struct route_config none = {
     "none",
     "none",
@@ -240,9 +283,18 @@ const struct route_config * const route_configs[IN_SOURCE_TAB_SIZE]
         &voice_earpiece,            /* OUT_DEVICE_EARPIECE */
         &voice_headset,             /* OUT_DEVICE_HEADSET */
         &voice_headphones,          /* OUT_DEVICE_HEADPHONES */
-        &bluetooth_sco,             /* OUT_DEVICE_BT_SCO */
+        &bluetooth_sco_nb,             /* OUT_DEVICE_BT_SCO */
         &voice_headphones,          /* OUT_DEVICE_SPEAKER_AND_HEADSET */
         &voice_earpiece,            /* OUT_DEVICE_SPEAKER_AND_EARPIECE */
+    },
+    {   /* IN_SOURCE_VOICE_CALL_WB */
+        &voice_speaker_wb,          /* OUT_DEVICE_SPEAKER */
+        &voice_earpiece_wb,         /* OUT_DEVICE_EARPIECE */
+        &voice_headset_wb,          /* OUT_DEVICE_HEADSET */
+        &voice_headphones_wb,       /* OUT_DEVICE_HEADPHONES */
+        &bluetooth_sco_wb,          /* OUT_DEVICE_BT_SCO */
+        &voice_headphones_wb,       /* OUT_DEVICE_SPEAKER_AND_HEADSET */
+        &voice_earpiece_wb          /* OUT_DEVICE_SPEAKER_AND_EARPIECE */
     },
 };
 
