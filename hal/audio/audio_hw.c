@@ -486,8 +486,18 @@ static void end_voice_call(struct audio_device *adev)
 static void adev_set_wb_amr_callback(void *data, int enable)
 {
     struct audio_device *adev = (struct audio_device *)data;
+    char voice_config[PROPERTY_VALUE_MAX];
 
-    ALOGV("%s: setting to: %d", __func__, enable);
+    ret = property_get("audio_hal.force_voice_config", voice_config, "");
+    if (ret > 0) {
+        if ((strncmp(voice_config, "narrow", 6)) == 0)
+            enable = 0;
+        else if ((strncmp(voice_config, "wide", 4)) == 0)
+            enable = 1;
+        ALOGV("%s: Forcing voice config: %s", __func__, voice_config);
+    } else {
+        ALOGV("%s: setting to: %d", __func__, enable);
+    }
 
     pthread_mutex_lock(&adev->lock);
     if (adev->wb_amr != enable) {
