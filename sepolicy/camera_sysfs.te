@@ -1,0 +1,2 @@
+#============= camera_sysfs ==============
+allow camera_sysfs sysfs:filesystem associate;

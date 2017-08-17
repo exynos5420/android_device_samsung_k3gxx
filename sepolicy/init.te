@@ -26,3 +26,9 @@ allow init camera_device:file { relabelto setattr };
 
 #rild-cas
 allow init socket_device:sock_file { create setattr unlink write };
+
+allow init proc:dir write;
+allow init servicemanager:binder { call transfer };
+allow init wifi_efs_file:file getattr;
+allow init batch_io_device:chr_file setattr;
+allow init camera_sysfs:lnk_file read;

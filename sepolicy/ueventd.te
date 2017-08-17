@@ -10,3 +10,7 @@ allow ueventd emmcblk_device:blk_file { relabelfrom relabelto };
 
 # /sys/devices/virtual/camera/rear/rear_camfw
 allow ueventd camera_device:file { getattr relabelto };
+
+allow ueventd batch_io_device:chr_file { create setattr };
+
+allow ueventd camera_sysfs:dir { getattr open read search };
