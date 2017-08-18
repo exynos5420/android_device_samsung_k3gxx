@@ -23,3 +23,4 @@ allow vcs tee:unix_stream_socket connectto;
 allow vcs secmem_device:chr_file { read write ioctl open };
 
 allow vcs ion_device:chr_file { open read write ioctl };
+allow vcs system_data_file:dir create_dir_perms;
