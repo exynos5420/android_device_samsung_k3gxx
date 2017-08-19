@@ -214,7 +214,7 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd \
-    fingerprint.universal5422 \
+    fingerprint.exynos5 \
     ValidityService
 
 # Legacy stagefright media
