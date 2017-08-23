@@ -192,3 +192,7 @@ BOARD_HARDWARE_CLASS += device/samsung/k3gxx/cmhw
 # SECCOMP
 # frameworks/av/services/{mediacodec,mediaextractor}/minijail
 BOARD_SECCOMP_POLICY += device/samsung/k3gxx/seccomp
+
+ifeq ($(WITH_TWRP),true)
+include device/samsung/k3gxx/twrp.mk
+endif
