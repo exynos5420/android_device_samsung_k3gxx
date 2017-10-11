@@ -43,8 +43,8 @@ TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
 # Camera
-PRODUCT_PACKAGES += \
-    Snap
+#PRODUCT_PACKAGES += \
+#    SnapdragonCamera
 
 # Display
 PRODUCT_PACKAGES += \
@@ -121,6 +121,7 @@ PRODUCT_COPY_FILES += \
 
 # Permissions
 PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
@@ -140,13 +141,17 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml \
+    frameworks/native/data/etc/android.hardware.sensor.heartrate.ecg.xml:system/etc/permissions/android.hardware.sensor.heartrate.ecg.xml \
     frameworks/native/data/etc/android.hardware.sensor.heartrate.xml:system/etc/permissions/android.hardware.sensor.heartrate.xml \
+    frameworks/native/data/etc/android.hardware.sensor.heartrate.fitness.xml:system/etc/permissions/android.hardware.sensor.heartrate.fitness.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/native/data/etc/android.hardware.camera.full.xml:system/etc/permissions/android.hardware.camera.full.xml \
+    frameworks/native/data/etc/android.hardware.camera.raw.xml:system/etc/permissions/android.hardware.camera.raw.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml
@@ -167,8 +172,8 @@ PRODUCT_PACKAGES += \
     init.power.rc 
 
 # Samsung Doze
-PRODUCT_PACKAGES += \
-    SamsungDoze
+# PRODUCT_PACKAGES += \
+#    SamsungDoze
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -221,9 +226,31 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.stagefright.legacyencoder=true \
     media.stagefright.less-secure=true
 
+# Dalvik/Art heap settings
+PRODUCT_PROPERTY_OVERRIDES += \
+	dalvik.vm.heapstartsize=8m \
+	dalvik.vm.heapgrowthlimit=256m \
+	dalvik.vm.heapsize=512m \
+	dalvik.vm.heaptargetutilization=0.75 \
+	dalvik.vm.heapminfree=2m \
+	dalvik.vm.heapmaxfree=8m
+
+# Hwui settings
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.hwui.texture_cache_size=50 \
+	ro.hwui.layer_cache_size=34 \
+	ro.hwui.path_cache_size=10 \
+	ro.hwui.shape_cache_size=4 \
+	ro.hwui.gradient_cache_size=2 \
+	ro.hwui.drop_shadow_cache_size=6 \
+	ro.hwui.text_small_cache_width=2048 \
+	ro.hwui.text_small_cache_height=2048 \
+	ro.hwui.text_large_cache_width=4096 \
+	ro.hwui.text_large_cache_height=4096
+
 # call dalvik heap and hwui config
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+# $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
+# $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # call Samsung LSI board support package
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
